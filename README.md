@@ -1,2 +1,2 @@
 # TodoApi
-Controller-based TodoMVC web API 
+Basic controller-based TodoMVC web API 
