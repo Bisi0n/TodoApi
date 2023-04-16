@@ -18,9 +18,9 @@ namespace TodoMVC.Context
         public DbSet<Todos> Todos { get; set; }
 
         //Sample Data
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Todos>().HasData(new Todos { Id = 1, Text = "Workout", IsDone = false });
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Todos>().HasData(new Todos { Id = 1, Text = "Workout", IsDone = false });
+        //}
     }
 }
