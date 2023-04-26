@@ -6,7 +6,7 @@ using TodoMVC.Models;
 namespace TodoMVC.Controllers
 {
     [ApiController]
-    [Route("/api/todoitems")]
+    [Route("/api")]
     public class TodoController : ControllerBase
     {
         private readonly TodosContext database;
@@ -118,9 +118,11 @@ namespace TodoMVC.Controllers
             }
             else
             {
+                bool toggledIsDone = todoItem.All(c => c.IsDone); //When all todos is toggled
+
                 foreach (var todo in todoItem) 
                 {
-                    todo.IsDone = !todo.IsDone;
+                    todo.IsDone = !toggledIsDone;  //toggle based on toggledIsDone
                 }
 
                 database.SaveChanges();
