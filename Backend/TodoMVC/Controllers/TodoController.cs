@@ -6,7 +6,7 @@ using TodoMVC.Models;
 namespace TodoMVC.Controllers
 {
     [ApiController]
-    [Route("/api")]
+    [Route("/notes")]
     public class TodoController : ControllerBase
     {
         private readonly TodosContext database;
@@ -16,7 +16,7 @@ namespace TodoMVC.Controllers
         }
 
         //All todos
-        [HttpGet("/api/notes")]
+        [HttpGet("/notes")]
         public ActionResult<List<Todos>> GetTodos(bool? completed)
         {
             //var todoItem = database.Todos.ToList();
@@ -31,7 +31,7 @@ namespace TodoMVC.Controllers
             return todoItem;
         }
         //By ID
-        [HttpGet("/api/notes/{id}")]
+        [HttpGet("/notes/{id}")]
         public ActionResult<Todos> GetTodosId(int id)
         {
             var todoId = database.Todos.Find(id);
@@ -44,7 +44,7 @@ namespace TodoMVC.Controllers
             return todoId;
         }
         //Add todos
-        [HttpPost("/api/notes")]
+        [HttpPost("/notes")]
         public async Task<ActionResult<Todos>> AddTodos(Todos todoItem)
         {
 
@@ -60,7 +60,7 @@ namespace TodoMVC.Controllers
         }
 
         //Update todos
-        [HttpPut("/api/notes/{id}")]
+        [HttpPut("/notes/{id}")]
         public async Task<ActionResult<Todos>> UpdateTodos(int id, Todos todoItem)
         {
             var updateTodo = await database.Todos.FindAsync(id);
@@ -80,7 +80,7 @@ namespace TodoMVC.Controllers
         }
 
         //Delete todos
-        [HttpDelete("/api/notes/{id}")]
+        [HttpDelete("/notes/{id}")]
         public ActionResult DeleteTodos(int id)
         {
             var deleteTodo = database.Todos.Find(id);
@@ -97,7 +97,7 @@ namespace TodoMVC.Controllers
             }
         }
         
-        [HttpGet("/api/remaining")]
+        [HttpGet("/remaining")]
         public ActionResult<int> GetCount()
         {
             int remainingTodo = database.Todos.Count(c => !c.IsDone);
@@ -107,7 +107,7 @@ namespace TodoMVC.Controllers
 
 
         //Toggle all ***
-        [HttpPost("/api/toggle-all")]
+        [HttpPost("/toggle-all")]
         public ActionResult<List<Todos>> ToggleTodos()
         {
             var todoItem = database.Todos.ToList();
@@ -131,7 +131,7 @@ namespace TodoMVC.Controllers
         }
 
         //Clear completed
-        [HttpPost("/api/clear-completed")]
+        [HttpPost("/notes/clear-completed")]
         public ActionResult ClearCompleted()
         {
             var completedTodo = database.Todos.Where(c => c.IsDone).ToList();
